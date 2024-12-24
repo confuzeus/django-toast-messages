@@ -1,0 +1,14 @@
+{% load toast_tags %}
+{% if messages %}
+{% for message in messages %}
+{% toaster level=message.level_tag %}
+<div class="toast align-items-center {{ toast.color_class }}" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">{{ message|safe }}</div>
+    <button type="button" class="btn-close me-2 m-auto {{ toast.close_button_class }}" data-bs-dismiss="toast"
+      aria-label="Close"></button>
+  </div>
+</div>
+{% endtoaster %}
+{% endfor %}
+{% endif %}
