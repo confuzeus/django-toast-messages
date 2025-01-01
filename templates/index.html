@@ -27,7 +27,7 @@
 
   </div>
 
-  <div data-toasts-container hx-get='{% url "toasts" %}' hx-trigger="toasts:fetch" hx-swap="afterbegin"
+  <div data-toasts-container hx-get='{% url "toasts" %}' hx-trigger="toasts:fetch from:body" hx-swap="afterbegin"
     class="toast-container top-0 end-0 p-3">
     {% include "toasts.html" %}
   </div>
@@ -54,12 +54,6 @@
       });
     }
 
-
-    document.addEventListener("htmx:afterRequest", (evt) => {
-      if (!evt.detail.requestConfig.path.includes("toasts")) {
-        document.querySelector("[data-toasts-container]").dispatchEvent(new Event("toasts:fetch"));
-      }
-    });
 
     document.addEventListener("DOMContentLoaded", () => {
       initToasts();
